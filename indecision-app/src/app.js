@@ -11,6 +11,14 @@ const template = (
     </div>
 );
 
+const templateTwo = (
+    <div>
+        <h1>Werner Stein</h1>
+        <p>Age: 54</p>
+        <p>Location: Ludwigsburg</p>
+    </div>
+);
+
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
