@@ -1,9 +1,15 @@
 console.log('App.js is running!');
 
+
+const app = {
+    title :'Indecision App',
+    subtitle: 'Here is some info...'
+}
+
 const template = (
     <div>
-        <h1>This is JSX from App.js</h1>
-        <p>this is some text...</p>
+        <h1>{app.title}</h1>
+        <p>{app.subtitle}</p>
         <ol>
             <li>Item One</li>
             <li>Item Two</li>
@@ -11,14 +17,21 @@ const template = (
     </div>
 );
 
+const user =
+    {
+        name: 'Werner',
+        age: 54,
+        location: 'Ludwigsburg'
+    };
+
 const templateTwo = (
     <div>
-        <h1>Werner Stein</h1>
-        <p>Age: 54</p>
-        <p>Location: Ludwigsburg</p>
+        <h1>{user.name}!</h1>
+        <p>Age: {user.age}</p>
+        <p>Location: {user.location}</p>
     </div>
 );
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
