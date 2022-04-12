@@ -12,7 +12,11 @@ function renderOptions(options) {
         return (<div>
             <p>Here are your options: </p>
             <button onClick={removeAll}>Remove All</button>
-            <ol> {options.map((option, id) => <li key={id}>Item {option}</li>)} </ol>
+            <ol>
+                {options.map((option, id) =>
+                    <li key={id}>Item {option}</li>
+                )}
+            </ol>
         </div>);
     } else {
         return <p>No options</p>
@@ -32,7 +36,7 @@ function onFormSubmit(e) {
     renderApp();
 }
 
-function removeAll(e) {
+function removeAll(_e) {
     app.options = [];
 
     renderApp();
