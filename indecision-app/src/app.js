@@ -2,9 +2,9 @@ console.log('App.js is running!');
 
 class IndecisionApp extends React.Component {
     render() {
-        const title = "Indecision";
-        const subtitle = "Put your life in the hands of a computer";
-        const options = ["Thing one", "Thing two", "Thing three", "Thing four"];
+        const title = 'Indecision';
+        const subtitle = 'Put your life in the hands of a computer';
+        const options = ['Thing one', 'Thing two', 'Thing three', 'Thing four'];
 
         return (
             <div>
@@ -31,19 +31,27 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert('handlePick...')
+    }
     render() {
         return (
             <div>
-                <button>What should I do?</button>
+                <button onClick={this.handlePick}>What should I do?</button>
             </div>
         );
     }
 }
 
 class Options extends React.Component {
+    handleRemoveAll() {
+        alert('removeAll...')
+    }
+
     render() {
         return (
             <div>
+                <button onClick={this.handleRemoveAll}>Remove all</button>
                 <p>Here are your options: </p>
                 <ol>
                     {
@@ -65,11 +73,22 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+
+        const option = e.target.elements.option.value.trim();
+        if (option) {
+            e.target.elements.option.value = '';
+            alert(option);
+        }
+    }
+
     render() {
         return (
-            <div>
-                <p>AddOption component here</p>
-            </div>
+            <form onSubmit={this.handleAddOption}>
+                <input type="text" name="option" />
+                <button>Add Option</button>
+            </form>
         );
     }
 }
