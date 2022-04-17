@@ -2,6 +2,7 @@ class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handleDeleteOption = this.handleDeleteOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
 
@@ -15,6 +16,12 @@ class IndecisionApp extends React.Component {
     handleDeleteOptions() {
         this.setState(() => ({
             options: []
+        }));
+    }
+
+    handleDeleteOption(optionToRemove) {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => (option !== optionToRemove))
         }));
     }
 
@@ -47,6 +54,7 @@ class IndecisionApp extends React.Component {
                 <Options
                     options={this.state.options}
                     handleDeleteOptions={this.handleDeleteOptions}
+                    handleDeleteOption={this.handleDeleteOption}
                 />
                 <AddOption
                     handleAddOption={this.handleAddOption}
@@ -84,13 +92,30 @@ const Options = props => (
         <p>Here are your options: </p>
         <ol>
             {
-                props.options.map((option, id) => <Option id={id} optionText={option}/>)
+                props.options.map((option, index) => (
+                    <Option
+                        key={index}
+                        optionText={option}
+                        handleDeleteOption={props.handleDeleteOption}
+                    />
+                ))
             }
         </ol>
     </div>
 );
 
-const Option = props => <li key={props.id}>{props.optionText}</li>;
+const Option = props => (
+    <li key={props.key}>
+        {props.optionText}
+        <button
+            onClick={(e) => {
+                props.handleDeleteOption(props.optionText)
+            }}
+        >
+            remove
+        </button>
+    </li>
+);
 
 class AddOption extends React.Component {
     constructor(props) {
