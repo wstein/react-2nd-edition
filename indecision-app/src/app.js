@@ -61,56 +61,39 @@ class IndecisionApp extends React.Component {
     }
 }
 
-class Header extends React.Component {
-    render() {
-        const props = this.props;
-        return (
+const Header = props => (
             <div>
                 <h1>{props.title}</h1>
-                <h2>{props.subtitle}</h2>
+        {props.subtitle && <h2>{props.subtitle}</h2>}
             </div>
         );
     }
 }
 
-class Action extends React.Component {
-    render() {
-        return (
+const Action = props => (
             <div>
                 <button
-                    onClick={this.props.handlePick}
-                    disabled={!this.props.hasOptions}
+            onClick={props.handlePick}
+            disabled={!props.hasOptions}
                 >
                     What should I do?
                 </button>
             </div>
         );
-    }
-}
 
-class Options extends React.Component {
-    render() {
-        return (
+const Options = props => (
             <div>
-                <button onClick={this.props.handleDeleteOptions}>Remove all</button>
+        <button onClick={props.handleDeleteOptions}>Remove all</button>
                 <p>Here are your options: </p>
                 <ol>
                     {
-                        this.props.options.map((option, id) => <Option id={id} optionText={option}/>)
+                props.options.map((option, id) => <Option id={id} optionText={option}/>)
                     }
                 </ol>
             </div>
         );
-    }
-}
 
-class Option extends React.Component {
-    render() {
-        return (
-            <li key={this.props.id}>{this.props.optionText}</li>
-        );
-    }
-}
+const Option = props => <li key={props.id}>{props.optionText}</li>;
 
 class AddOption extends React.Component {
     constructor(props) {
