@@ -1,14 +1,7 @@
-console.log("app is running!")
 
-import subtract, {add, square} from './utils';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-console.log(square(4));
-console.log(add(100, 23));
-console.log(subtract(100, 20));
+const template = React.createElement('p', {}, 'testing 123...');
 
-import senior, {isAdult,canDrink} from "./person";
-
-const age = 19;
-console.log(`adult: ${isAdult(age)}`)
-console.log(`can drink: ${canDrink(age)}`)
-console.log(`senior: ${senior(age)}`)
+ReactDOM.render(template, document.getElementById('app'));
