@@ -14,11 +14,16 @@ class IndecisionApp extends React.Component {
     }
 
     componentDidMount() {
-        console.log('fetching data!');
+        localStorage.options &&
+        this.setState(() => ({
+            options: JSON.parse(localStorage.options)
+        }));
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('updating data!');
+        if (prevState.options.length !== this.state.options.length) {
+            localStorage.options = JSON.stringify(this.state.options);
+        }
     }
 
     componentWillUnmount() {
@@ -101,7 +106,7 @@ const Action = props => (
 const Options = props => (
     <div>
         <button onClick={props.handleDeleteOptions}>Remove all</button>
-        <p>Here are your options: </p>
+        <p>{props.options.length === 0 ? 'Please enter an option to get started!' : 'Here are your options:'}</p>
         <ol>
             {
                 props.options.map((option, index) => (
@@ -143,10 +148,13 @@ class AddOption extends React.Component {
         e.preventDefault();
 
         const option = e.target.elements.option.value.trim();
-        e.target.elements.option.value = '';
-        const error = this.props.handleAddOption(option);
 
+        const error = this.props.handleAddOption(option);
         this.setState(() => ({error}));
+
+        if (!error) {
+            e.target.elements.option.value = '';
+        }
     }
 
     render() {
