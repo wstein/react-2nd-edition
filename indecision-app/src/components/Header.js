@@ -2,10 +2,6 @@ import React from "react";
 import AddOption from "./AddOption";
 
 class Header extends React.Component {
-    defaultProps: {
-        title: 'Indecision'
-    }
-
     render() {
         return (
             <div>
@@ -14,6 +10,10 @@ class Header extends React.Component {
             </div>
         );
     }
+}
+
+Header.defaultProps = {
+    title: 'Indecision'
 }
 
 export default Header;
