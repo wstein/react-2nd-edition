@@ -4,7 +4,7 @@ const Option = props => (
     <li key={props.key}>
         {props.optionText}
         <button
-            onClick={(e) => {
+            onClick={e => {
                 props.handleDeleteOption(props.optionText)
             }}
         > remove
