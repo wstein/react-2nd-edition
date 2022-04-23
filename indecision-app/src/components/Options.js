@@ -3,7 +3,10 @@ import Option from "./Option";
 
 const Options = props => (
     <div>
-        <button onClick={props.handleDeleteOptions}>Remove all</button>
+        <button className="button--link"
+                onClick={props.handleDeleteOptions}>
+            Remove all
+        </button>
         <p>{props.options.length === 0 ? 'Please enter an option to get started!' : 'Here are your options:'}</p>
         <ol>
             {
