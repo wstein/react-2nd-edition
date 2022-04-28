@@ -8,11 +8,15 @@ const store = createStore((state = initState, action) => {
     switch (action.type) {
         case 'DECREMENT':
             return {
-                count: state.count - 1
+                count: state.count - (action.by || 1)
             };
         case 'INCREMENT':
             return {
-                count: state.count + 1
+                count: state.count + (action.by || 1)
+            };
+        case 'SET':
+            return {
+                count: action.to
             };
         case 'RESET':
             return {
@@ -23,27 +27,31 @@ const store = createStore((state = initState, action) => {
     }
 });
 
-
-console.log(store.getState());
+const unsubscribe = store.subscribe(() => {
+    console.log(store.getState());
+});
 
 store.dispatch({
-    type: 'INCREMENT'
+    type: 'INCREMENT',
+    by: 10
 });
 
 store.dispatch({
     type: 'INCREMENT'
 });
-
-console.log(store.getState());
 
 store.dispatch({
     type: 'RESET'
 });
 
-console.log(store.getState());
-
 store.dispatch({
-    type: 'DECREMENT'
+    type: 'DECREMENT',
+    by: 3
 });
 
-console.log(store.getState());
+store.dispatch({
+    type: 'SET',
+    to: 101
+});
+
+unsubscribe()
