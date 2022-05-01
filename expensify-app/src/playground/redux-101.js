@@ -4,6 +4,7 @@ let initState = {
     count: 0
 };
 
+// Action Generators
 const increment = ({by = 1} = {}) => ({
     type: 'INCREMENT',
     by
@@ -24,7 +25,8 @@ const set = ({to = 1} = {}) => ({
     to
 });
 
-const store = createStore((state = initState, action) => {
+// Reducers
+const countReducer = (state = initState, action) => {
     switch (action.type) {
         case 'DECREMENT':
             return {
@@ -45,7 +47,9 @@ const store = createStore((state = initState, action) => {
         default:
             return state;
     }
-});
+};
+
+const store = createStore(countReducer);
 
 const unsubscribe = store.subscribe(() => {
     console.log(store.getState());
